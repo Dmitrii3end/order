@@ -1,0 +1,41 @@
+body{
+    background-color: #e9dcd6;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.logo{
+    text-align: center;
+}
+
+.logo img{
+    width: 70px;
+}
+
+.product{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product__name{
+    flex-grow: 1;
+}
+
+.product__info{
+    display: flex;
+    gap: 15px;
+}
+
+.product__value{
+    width: 70px;
+}
+
+#order{
+    background-color: #3d2523;
+    color: #e9dcd6;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/order.css">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <form action="telegram.php" method="post" class="form">
+                <div class="logo">
+                    <img class="logo" src="./images/logo.png" alt="">
+                </div>
+                <label for="name">Юр лицо</label>
+                <input required id="name" name="Заказчик:" type="text" placeholder="заказчик">
+
+                <label for="adres">Подраззделение:</label>
+                <input required id="adres" name="Адрес" type="text" placeholder="Подраззделение">
+
+
+                <input required id="date" name="Дата" type="date" name="" id="">
+
+                <datalist id="product">
+                    <option>05.01.15. Киприно. Сыр "Мудрая Коза" 45%, цил. 1,5кг</option>
+                    <option>05.01.45. Киприно. Сыр "Пармезан" 40% (>6мес), цил. 5кг</option>
+                    <option>05.12.20. Кабош. Сыр тв. "Grande Fortezza Rizerva d'Oro" 50% (9мес), сектор 875гр</option>
+                    <option>07.04.60. MonBlu. Сыр с гол. плесенью СЛИВОЧНЫЙ 60%, круг 2,5кг</option>
+                </datalist>
+
+                <label for="">Товары:</label>
+                <div class="products">
+                    <div class="product">
+                        <input required class="product__name" name="Продукт" list="product" placeholder="название">
+    
+                        <div class="product__info">
+                            <span>кол-во в упаковке: </span>
+                            <input required class="product__value" name="кол-во упаковок" type="number" placeholder="кол-во упаковок">
+                            <input required class="product__value" name="общее кол-во" type="number" placeholder="всего">
+                        </div>
+                    </div>
+                </div>
+
+                <button id="addProduct">добавить позицию</button>
+
+                <button type="submit" id="order">Сделать заказ</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="./js/order.js"></script>
+</body>
+</html>

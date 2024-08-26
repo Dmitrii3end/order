@@ -4,23 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/order.css">
+    <link rel="stylesheet" href="./css/loader.css">
     <title>Document</title>
 </head>
 <body>
-    <main>
+    <div class="loading">
+        <span class="loading__span" style="--i: 0" aria-hidden="true"><span>L</span></span>
+	    <span class="loading__span" style="--i: 1" aria-hidden="true"><span>O</span></span>
+	    <span class="loading__span" style="--i: 2" aria-hidden="true"><span>A</span></span>
+	    <span class="loading__span" style="--i: 3" aria-hidden="true"><span>D</span></span>
+	    <span class="loading__span" style="--i: 4" aria-hidden="true"><span>I</span></span>
+        <span class="loading__span" style="--i: 5" aria-hidden="true"><span>N</span></span>
+        <span class="loading__span" style="--i: 6" aria-hidden="true"><span>G</span></span>
+        <span class="loading__span" style="--i: 7" aria-hidden="true"><span>🦄</span></span>
+    </div>
+    <main class="main isLoading">
         <div class="container">
             <form action="telegram.php" method="post" class="form">
                 <div class="logo">
                     <img class="logo" src="./images/logo.png" alt="">
                 </div>
                 <label for="name">Юр лицо</label>
-                <input required id="name" name="Заказчик:" type="text" placeholder="заказчик">
+                <input required id="name" name="name" type="text" placeholder="заказчик">
 
                 <label for="adres">Подраззделение:</label>
-                <input required id="adres" name="Адрес" type="text" placeholder="Подраззделение">
+                <input required id="adres" name="adres" type="text" placeholder="Подраззделение">
 
 
-                <input required id="date" name="Дата" type="date" name="" id="">
+                <input required id="date" name="date" type="date" name="" id="">
 
                 <datalist id="product">
                     <option>05.01.15. Киприно. Сыр "Мудрая Коза" 45%, цил. 1,5кг</option>
@@ -32,12 +43,12 @@
                 <label for="">Товары:</label>
                 <div class="products">
                     <div class="product">
-                        <input required class="product__name" name="Продукт" list="product" placeholder="название">
+                        <input required class="product__name" name="product__name[]" list="product" placeholder="название">
     
                         <div class="product__info">
-                            <span>кол-во в упаковке: </span>
-                            <input required class="product__value" name="кол-во упаковок" type="number" placeholder="кол-во упаковок">
-                            <input required class="product__value" name="общее кол-во" type="number" placeholder="всего">
+                            <span data-count="0">Кол-во в упаковке: </span>
+                            <input required class="product__value value" min="0" name="product__value[]" type="number" placeholder="кол-во упаковок">
+                            <input required class="product__value allValue" min="0" name="product__all__value[]" type="number" placeholder="всего">
                         </div>
                     </div>
                 </div>

@@ -3,14 +3,39 @@
 $token = "7332625961:AAGrtzKGYmAh6dEnTDzT2BJ79w5OTASjj-8";
 $chat_id = "-4556987065";
 
-foreach($_POST as $key => $value) {
+$name = $_POST['name'];
+$adres = $_POST['adres'];
+$date = $_POST['date'];
+$products = $_POST['product__name'];
+$product__value = $_POST['product__value'];
+$product__all__value = $_POST['product__all__value'];
+$counter = 0;
+
+$arr = array(
+    'Имя пользователя: ' => $name,
+    'Адрес: '            => $adres,
+    'Дата: '             => $date
+  );
+
+foreach($arr as $key => $value) {
     $txt .= "<b>".$key."</b> ".$value."%0A";
   };
+
+  // foreach($products as $key => $value) {
+  //   $txt .= "<b> products </b> ".$value."%0A";
+  // };
+
+ for ($i = 0; $i < count($products); $i++) {
+    $txt .= "%0A";
+    $txt .= "<b>Название: </b> ".$products[$i]."%0A";
+    $txt .= "<b>Кол-во упаковок: </b> ".$product__value[$i]."%0A";
+    $txt .= "<b>Всего: </b> ".$product__all__value[$i]."%0A";
+}
 
 $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
 
 if ($sendToTelegram) {
-  header('Location: thank-you.html');
+  header('Location: order.html');
 } else {
   echo "Error";
 }

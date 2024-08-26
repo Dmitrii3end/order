@@ -8,6 +8,14 @@ body{
     gap: 10px;
 }
 
+.main{
+    transition: opacity 1s;
+}
+
+.isLoading{
+    opacity: 0;
+}
+
 .logo{
     text-align: center;
 }

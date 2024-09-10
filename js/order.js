@@ -1,9 +1,11 @@
-const KEY = 'AIzaSyARx8Y4TfJr-X0ExQhdlMmpWjqmaaE3DL8';
-const CLIENTID = '875309741954-hl010fec3uj5kptk9ude1gs5ici6b1ej.apps.googleusercontent.com';
+
 const URL = 'https://script.google.com/macros/s/AKfycbwYTib7B_-wRonL9e-NbSQT6yI-8IbqrDCF6uZzqO2fCTSWDMz3EKaqCz2zrFR1oqkP9g/exec';
+let currentInput;
+let currentSpan;
 
 let productArray = [];
 
+const datalist = document.querySelector('.list');
 
 async function init(){
     let response = await fetch(URL)
@@ -12,51 +14,63 @@ async function init(){
         let json = await response.json();
         productArray = json;
         console.log(json)
-        getOptions(json);
         onChange(document.querySelector('.product__name'), document.querySelector('.product__info span'), productArray);
         onChangeValue(document.querySelector('.product__info span'), document.querySelector('.value'), document.querySelector('.allValue'));
         onChangeAllValue(document.querySelector('.product__info span'), document.querySelector('.value'), document.querySelector('.allValue'));
         document.querySelector('.loading').style.display = 'none';
         document.querySelector('.isLoading').classList.remove('isLoading');
+        document.querySelector('.product__name').addEventListener('focus', (e) =>{
+            currentInput = e.target;
+            currentSpan = document.querySelector('#currentSpan0');
+        });
+
+        productArray.forEach((e) => {
+            const option = document.createElement('span');
+            option.innerText = e[0];
+            datalist.append(option);
+            option.addEventListener('click', (event) =>{
+                currentInput.value = event.target.textContent;
+                datalist.style.display = 'none';
+                
+
+                for (let i = 0; i < productArray.length; i++){
+                    console.log(productArray[i][0])
+                    if (event.target.textContent == productArray[i][0]){
+                        currentSpan.innerHTML = `Кол-во в упаковке: ${productArray[i][5]} шт.`;
+                        
+                        currentSpan.setAttribute('data-count', productArray[i][5]);
+                        break;
+                    }
+                }
+            });
+        });
+
+        getInputSearch(document.querySelector('.product__name'), document.querySelector('#currentSpan0'));
     }
 
     return false;
 }
 
-function getOptions(array){
-    const datalist = document.querySelector('#product');
-    
-    datalist.innerHTML = '';
-
-    for (let i = 0; i < array.length; i++){
-        let option = document.createElement('option')
-        option.innerText = array[i][0];
-        datalist.append(option);
-    }
-}
-
 function onChange(input, span, array){
     input.addEventListener('change', (e) => {
-        for (let i = 0; i < array.length; i++){
-            if (e.target.value == array[i][0]){
-                span.innerHTML = `Кол-во в упаковке: ${array[i][5]} шт.`;
-                
-                span.setAttribute('data-count', array[i][5]);
-                break;
+            for (let i = 0; i < array.length; i++){
+                if (currentInput.value == array[i][0]){
+                    span.innerHTML = `Кол-во в упаковке: ${array[i][5]} шт.`;
+                    
+                    span.setAttribute('data-count', array[i][5]);
+                    break;
+                }
             }
-        }
     });
 }
 
 function onChangeValue(inOne, target, secondTarget){
-    console.log(target)
     target.addEventListener('keyup', (e) => {
         secondTarget.value = countAll(inOne.dataset.count, target.value);
     });
 }
 
 function onChangeAllValue(inOne, target, allValueTarget){
-    console.log(target)
     allValueTarget.addEventListener('keyup', (e) => {
         target.value = countValue(inOne.dataset.count, allValueTarget.value);
     });
@@ -83,26 +97,32 @@ document.querySelector('#addProduct').addEventListener('click', (e) => {
     const productName = document.createElement('input');
     productName.classList.add('product__name');
     productName.setAttribute('name', 'product__name[]');
-    productName.setAttribute('list', 'product');
+    productName.setAttribute('autocomplete', 'off');
     productName.placeholder = 'название';
-    productName.list = 'product';
+    productName.addEventListener('focus', (e) =>{
+        currentInput = e.target;
+    });
+    productName.required = true;
     
     const productInfo = document.createElement('div');
     productInfo.classList.add('product__info');
-
+    
     const span = document.createElement('span');
     span.innerText = 'Кол-во в упаковке: '
+    getInputSearch(productName, span);
 
     const productValue = document.createElement('input');
     productValue.classList.add('product__value');
     productValue.setAttribute('name', 'product__value[]');
     productValue.type = 'number';
     productValue.placeholder = 'кол-во упаковок';
+    productValue.required = true;
     
     const productAllValue = document.createElement('input');
     productAllValue.classList.add('product__value');
     productAllValue.setAttribute('name', 'product__all__value[]');
     productAllValue.placeholder = 'всего';
+    productAllValue.required = true;
 
     product.append(productName, productInfo);
     productInfo.append(span, productValue, productAllValue);
@@ -114,5 +134,34 @@ document.querySelector('#addProduct').addEventListener('click', (e) => {
     onChangeAllValue(span, productValue, productAllValue);
 })
 
-init()
+function getInputSearch(input, span){
+    const datalist = document.querySelector('.list');
+
+    input.addEventListener('keyup', (event) =>{
+        const arr = datalist.querySelectorAll('span');
+        arr.forEach((e) =>{
+            let text = e.textContent.toLowerCase();
+            let searchText = event.target.value.toLowerCase();
+            text.indexOf(searchText) != -1? e.style.display = 'inline' : e.style.display = 'none';
+        })
+    })
+
+    input.addEventListener('focus', (event) =>{
+        currentSpan = span;
+
+        const arr = datalist.querySelectorAll('span');
+        
+        arr.forEach((e) =>{
+            let text = e.textContent.toLowerCase();
+            let searchText = event.target.value.toLowerCase();
+            text.indexOf(searchText) != -1? e.style.display = 'inline' : e.style.display = 'none';
+        })
+
+        datalist.style.display = 'flex';
+        datalist.style.width = event.target.offsetWidth + 'px';
+        datalist.style.top = event.target.offsetHeight + event.target.offsetTop + 'px';
+    })
+}
+
+init();
 

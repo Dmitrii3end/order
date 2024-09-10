@@ -1,5 +1,6 @@
 body{
     background-color: #e9dcd6;
+    padding-bottom: 60px;
 }
 
 .form{
@@ -14,6 +15,22 @@ body{
 
 .isLoading{
     opacity: 0;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    max-height: 100px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #fff;
+    position: absolute;
+    display: none;
+}
+
+.list span{
+    white-space: nowrap;
+    padding: 2px;
 }
 
 .logo{

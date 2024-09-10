@@ -19,6 +19,8 @@
         <span class="loading__span" style="--i: 7" aria-hidden="true"><span>🦄</span></span>
     </div>
     <main class="main isLoading">
+        <!-- <input class="test" type="text"> -->
+        <div class="list"></div>
         <div class="container">
             <form action="http://dmitrii3en.temp.swtest.ru/telegram.php" method="post" class="form">
                 <div class="logo">
@@ -33,20 +35,13 @@
 
                 <input required id="date" name="date" type="date" name="" id="">
 
-                <datalist id="product">
-                    <option>05.01.15. Киприно. Сыр "Мудрая Коза" 45%, цил. 1,5кг</option>
-                    <option>05.01.45. Киприно. Сыр "Пармезан" 40% (>6мес), цил. 5кг</option>
-                    <option>05.12.20. Кабош. Сыр тв. "Grande Fortezza Rizerva d'Oro" 50% (9мес), сектор 875гр</option>
-                    <option>07.04.60. MonBlu. Сыр с гол. плесенью СЛИВОЧНЫЙ 60%, круг 2,5кг</option>
-                </datalist>
-
                 <label for="">Товары:</label>
                 <div class="products">
                     <div class="product">
-                        <input required class="product__name" name="product__name[]" list="product" placeholder="название">
+                        <input required class="product__name" name="product__name[]" placeholder="название" autocomplete="off">
     
                         <div class="product__info">
-                            <span data-count="0">Кол-во в упаковке: </span>
+                            <span id="currentSpan0" data-count="0">Кол-во в упаковке: </span>
                             <input required class="product__value value" min="0" name="product__value[]" type="number" placeholder="кол-во упаковок">
                             <input required class="product__value allValue" min="0" name="product__all__value[]" type="number" placeholder="всего">
                         </div>
@@ -60,6 +55,6 @@
         </div>
     </main>
 
-    <script src="./js/order.js"></script>
+    <script type="module" src="./js/order.js"></script>
 </body>
 </html>

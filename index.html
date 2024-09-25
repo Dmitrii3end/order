@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/order.css">
     <link rel="stylesheet" href="./css/loader.css">
+    <link rel="stylesheet" href="./css/order.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -26,7 +27,7 @@
                 <div class="logo">
                     <img class="logo" src="./images/logo.png" alt="">
                 </div>
-                <label for="name">Юр лицо</label>
+                <label for="name">Юр. лицо:</label>
                 <input required id="name" name="name" type="text" placeholder="заказчик">
 
                 <label for="adres">Подраззделение:</label>
@@ -43,7 +44,11 @@
                         <div class="product__info">
                             <span id="currentSpan0" data-count="0">Кол-во в упаковке: </span>
                             <input required class="product__value value" min="0" name="product__value[]" type="number" placeholder="кол-во упаковок">
-                            <input required class="product__value allValue" min="0" name="product__all__value[]" type="number" placeholder="всего">
+                            <!-- <input required class="product__value allValue" min="0" name="product__all__value[]" type="number" placeholder="всего"> -->
+                            <select name="product__all__value[]">
+                                <option value="">Упаковка</option>
+                                <option value="">Штучно</option>
+                            </select>
                         </div>
                     </div>
                 </div>

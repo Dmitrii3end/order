@@ -3,6 +3,12 @@ const URL = 'https://script.google.com/macros/s/AKfycbwYTib7B_-wRonL9e-NbSQT6yI-
 let currentInput;
 let currentSpan;
 
+const tg = window.Telegram.WebApp;
+
+console.log(tg.initDataUnsafe?.user?.username);
+
+const VALUETYPE = ['Упаковка', 'Штучно'];
+
 let productArray = [];
 
 const datalist = document.querySelector('.list');
@@ -15,8 +21,8 @@ async function init(){
         productArray = json;
         console.log(json)
         onChange(document.querySelector('.product__name'), document.querySelector('.product__info span'), productArray);
-        onChangeValue(document.querySelector('.product__info span'), document.querySelector('.value'), document.querySelector('.allValue'));
-        onChangeAllValue(document.querySelector('.product__info span'), document.querySelector('.value'), document.querySelector('.allValue'));
+        // onChangeValue(document.querySelector('.product__info span'), document.querySelector('.value'), document.querySelector('.allValue'));
+        // onChangeAllValue(document.querySelector('.product__info span'), document.querySelector('.value'), document.querySelector('.allValue'));
         document.querySelector('.loading').style.display = 'none';
         document.querySelector('.isLoading').classList.remove('isLoading');
         document.querySelector('.product__name').addEventListener('focus', (e) =>{
@@ -34,7 +40,6 @@ async function init(){
                 
 
                 for (let i = 0; i < productArray.length; i++){
-                    console.log(productArray[i][0])
                     if (event.target.textContent == productArray[i][0]){
                         currentSpan.innerHTML = `Кол-во в упаковке: ${productArray[i][5]} шт.`;
                         
@@ -118,11 +123,20 @@ document.querySelector('#addProduct').addEventListener('click', (e) => {
     productValue.placeholder = 'кол-во упаковок';
     productValue.required = true;
     
-    const productAllValue = document.createElement('input');
-    productAllValue.classList.add('product__value');
+    // const productAllValue = document.createElement('input');
+    // productAllValue.classList.add('product__value');
+    // productAllValue.setAttribute('name', 'product__all__value[]');
+    // productAllValue.placeholder = 'всего';
+    // productAllValue.required = true;
+    const productAllValue = document.createElement('select');
     productAllValue.setAttribute('name', 'product__all__value[]');
-    productAllValue.placeholder = 'всего';
-    productAllValue.required = true;
+
+    for (let i = 0; i < VALUETYPE.length; i++){
+        const productAllValueOption = document.createElement('option');
+        productAllValueOption.innerText = VALUETYPE[i];
+
+        productAllValue.append(productAllValueOption);
+    }
 
     product.append(productName, productInfo);
     productInfo.append(span, productValue, productAllValue);
@@ -130,8 +144,8 @@ document.querySelector('#addProduct').addEventListener('click', (e) => {
     document.querySelector('.products').append(product);
 
     onChange(productName, span, productArray);
-    onChangeValue(span, productValue, productAllValue);
-    onChangeAllValue(span, productValue, productAllValue);
+    // onChangeValue(span, productValue, productAllValue);
+    // onChangeAllValue(span, productValue, productAllValue);
 })
 
 function getInputSearch(input, span){
@@ -146,7 +160,9 @@ function getInputSearch(input, span){
         })
     })
 
-    input.addEventListener('focus', (event) =>{
+    input.addEventListener('click', (event) =>{
+        event.stopPropagation();
+
         currentSpan = span;
 
         const arr = datalist.querySelectorAll('span');
@@ -160,6 +176,10 @@ function getInputSearch(input, span){
         datalist.style.display = 'flex';
         datalist.style.width = event.target.offsetWidth + 'px';
         datalist.style.top = event.target.offsetHeight + event.target.offsetTop + 'px';
+    })
+
+    document.addEventListener('click', (e) => {
+        datalist.style.display = 'none';
     })
 }
 

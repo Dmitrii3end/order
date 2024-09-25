@@ -28,8 +28,8 @@ foreach($arr as $key => $value) {
  for ($i = 0; $i < count($products); $i++) {
     $txt .= "%0A";
     $txt .= "<b>Название: </b> ".$products[$i]."%0A";
-    $txt .= "<b>Кол-во упаковок: </b> ".$product__value[$i]."%0A";
-    $txt .= "<b>Всего: </b> ".$product__all__value[$i]."%0A";
+    $txt .= "<b>Кол-во: </b> ".$product__value[$i]."%0A";
+    $txt .= "<b>Единица измерения: </b> ".$product__all__value[$i]."%0A";
 }
 
 $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");

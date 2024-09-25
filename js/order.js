@@ -5,7 +5,7 @@ let currentSpan;
 
 const tg = window.Telegram.WebApp;
 
-console.log(tg.initDataUnsafe?.user?.username);
+document.querySelector('#username').innerText = tg.initDataUnsafe?.user?.username;
 
 const VALUETYPE = ['Упаковка', 'Штучно'];
 

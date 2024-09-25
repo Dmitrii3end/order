@@ -3,7 +3,7 @@ const URL = 'https://script.google.com/macros/s/AKfycbwYTib7B_-wRonL9e-NbSQT6yI-
 let currentInput;
 let currentSpan;
 
-const tg = window.Telegram.WebApp;
+// const tg = window.Telegram.WebApp;
 
 // document.querySelector('#username').value = tg.initDataUnsafe?.user?.first_name;
 

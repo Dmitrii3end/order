@@ -1,5 +1,5 @@
 const TOKEN = '7332625961:AAGrtzKGYmAh6dEnTDzT2BJ79w5OTASjj-8';
-const CHATID = '-4556987065';
+const CHATID = '-1002166897508';
 const MYCHATID = '853051670';
 
 document.querySelector('#order').addEventListener('click', (e) => {

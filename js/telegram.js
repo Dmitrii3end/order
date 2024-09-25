@@ -35,7 +35,7 @@ function sendData(){
         message += `<b>Единица измерения: </b> ${product__all__value[i].value}.%0A`;
     }
     
-    let url = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${MYCHATID}&parse_mode=html&text=${message}`;
+    let url = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHATID}&parse_mode=html&text=${message}`;
 
     fetch(url);
     console.log(message);

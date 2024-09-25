@@ -183,5 +183,5 @@ function getInputSearch(input, span){
     })
 }
 
-// init();
+init();
 

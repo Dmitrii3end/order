@@ -3,6 +3,7 @@
 $token = "7332625961:AAGrtzKGYmAh6dEnTDzT2BJ79w5OTASjj-8";
 $chat_id = "-4556987065";
 
+$username = $_POST['username'];
 $name = $_POST['name'];
 $adres = $_POST['adres'];
 $date = $_POST['date'];
@@ -12,6 +13,7 @@ $product__all__value = $_POST['product__all__value'];
 $counter = 0;
 
 $arr = array(
+    'Заказ создал: '     => $username,
     'Имя пользователя: ' => $name,
     'Адрес: '            => $adres,
     'Дата: '             => $date

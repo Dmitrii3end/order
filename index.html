@@ -24,7 +24,8 @@
         <!-- <input class="test" type="text"> -->
         <div class="list"></div>
         <div class="container">
-            <form action="http://dmitrii3en.temp.swtest.ru/telegram.php" method="post" class="form">
+            <!-- <form action="http://dmitrii3en.temp.swtest.ru/telegram.php" method="post" class="form"> -->
+            <form class="form">
                 <!-- <input id="username" name="username" type="hidden" value="аноним"> -->
 
                 <div class="logo">
@@ -48,9 +49,9 @@
                             <span id="currentSpan0" data-count="0">Кол-во в упаковке: </span>
                             <input required class="product__value value" min="0" name="product__value[]" type="number" placeholder="кол-во упаковок">
                             <!-- <input required class="product__value allValue" min="0" name="product__all__value[]" type="number" placeholder="всего"> -->
-                            <select name="product__all__value[]">
-                                <option value="">Упаковка</option>
-                                <option value="">Штучно</option>
+                            <select class="product__all__value" name="product__all__value[]">
+                                <option value="Упаковка">Упаковка</option>
+                                <option value="Штучно">Штучно</option>
                             </select>
                         </div>
                     </div>
@@ -64,5 +65,6 @@
     </main>
 
     <script type="module" src="./js/order.js"></script>
+    <script defer src="./js/telegram.js"></script>
 </body>
 </html>

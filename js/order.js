@@ -129,10 +129,12 @@ document.querySelector('#addProduct').addEventListener('click', (e) => {
     // productAllValue.placeholder = 'всего';
     // productAllValue.required = true;
     const productAllValue = document.createElement('select');
+    productAllValue.classList.add('product__all__value');
     productAllValue.setAttribute('name', 'product__all__value[]');
 
     for (let i = 0; i < VALUETYPE.length; i++){
         const productAllValueOption = document.createElement('option');
+        productAllValueOption.value = VALUETYPE[i];
         productAllValueOption.innerText = VALUETYPE[i];
 
         productAllValue.append(productAllValueOption);

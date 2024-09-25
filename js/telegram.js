@@ -9,12 +9,17 @@ document.querySelector('#order').addEventListener('click', (e) => {
 });
 
 function sendData(){
+    const tg = window.Telegram.WebApp;
+
+    let userName = tg.initDataUnsafe?.user?.first_name;
+
     let message = '';
 
     let name = document.querySelector('#name').value;
     let adres = document.querySelector('#adres').value;
     let date = document.querySelector('#date').value;
 
+    message += `<b>Отправитель: </b> ${userName}. %0A`
     message += `<b>Имя пользователя: </b> ${name}. %0A`
     message += `<b>Адрес: </b> ${adres}. %0A`
     message += `<b>Дата: </b> ${date}. %0A`
@@ -25,15 +30,13 @@ function sendData(){
 
     console.log(message)
     for (let i = 0; i < products.length; i++){
-        message += `
-            <b>Название: </b> ${products[i].value}."%0A"
-            <b>Кол-во: </b> ${product__value[i].value}."%0A"
-            <b>Единица измерения: </b> ${product__all__value[i].value}."%0A"
-        `;
+        message += `<b>Название: </b> ${products[i].value}.%0A`;
+        message += `<b>Кол-во: </b> ${product__value[i].value}.%0A`;
+        message += `<b>Единица измерения: </b> ${product__all__value[i].value}.%0A`;
     }
     
     let url = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${MYCHATID}&parse_mode=html&text=${message}`;
 
     fetch(url);
-    console.log(message)
+    console.log(message);
 }
